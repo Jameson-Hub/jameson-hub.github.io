@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deploy Run — Jameson Bagain</title>
+  <meta name="description" content="Deploy Run: a tiny pixel runner from Jameson Bagain's portfolio. Jump the bugs, ship the build." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="assets/icon-circle-180.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="game-page">
+  <div class="crt" aria-hidden="true"></div>
+
+  <header class="game-bar wrap">
+    <a class="btn" href="index.html#arcade">◀ BACK</a>
+    <h1 class="game-title">DEPLOY RUN</h1>
+    <button class="btn" id="sound-btn" type="button" aria-pressed="false">♪ OFF</button>
+  </header>
+
+  <main class="wrap">
+    <div class="px-box game-frame">
+      <canvas id="game" width="320" height="160" tabindex="0" aria-label="Deploy Run game. Press space or tap to jump."></canvas>
+    </div>
+
+    <div class="game-info">
+      <div class="px-box">
+        <p class="sub">CONTROLS</p>
+        <p><b class="gold">SPACE / ↑ / TAP</b> jump — hold for a higher jump</p>
+        <p><b class="gold">P / ESC</b> pause</p>
+      </div>
+      <div class="px-box">
+        <p class="sub">FIELD GUIDE</p>
+        <p class="guide"><img src="assets/sprites/slime.svg" alt="" /> <span><b>BUG</b> — jump it</span></p>
+        <p class="guide"><img src="assets/sprites/server.svg" alt="" /> <span><b>CRASHED SERVER</b> — taller, jump early</span></p>
+        <p class="guide"><img src="assets/sprites/coin.svg" alt="" /> <span><b>COIN</b> — +10 points</span></p>
+        <p class="guide"><img src="assets/sprites/coffee.svg" alt="" /> <span><b>COFFEE</b> — 6s shield, smash anything</span></p>
+      </div>
+      <div class="px-box best-box">
+        <p class="sub">YOUR BEST</p>
+        <p class="best" id="best">00000</p>
+        <p class="muted">Score 1000 to unlock <b class="gold">SHIP IT</b>.</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="arcade.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jameson Bagain — Full-Stack Software Engineer</title>
+  <meta name="description" content="Jameson Bagain — full-stack engineer building TypeScript, React, Node and AWS serverless products." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="assets/icon-circle-180.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">skip to content</a>
+
+  <!-- Reusable pixel icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-trophy" viewBox="0 0 16 16" shape-rendering="crispEdges">
+      <path fill="currentColor" d="M3 1h10v1h2v4h-1v1h-1v1h-1v1h-1v2h1v1h1v3H3v-3h1v-1h1V9H4V8H3V7H2V6H1V2h2zm0 2H2v3h1zm10 0v3h1V3z" />
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 8 7" shape-rendering="crispEdges">
+      <path fill="currentColor" d="M1 0h2v1h2V0h2v1h1v3H7v1H6v1H5v1H3V6H2V5H1V4H0V1h1z" />
+    </symbol>
+    <symbol id="i-cloud" viewBox="0 0 16 12" shape-rendering="crispEdges"><path fill="currentColor" d="M5 3h4v1h-4zM4 4h6v1h-6zM3 5h8v1h-8zM12 5h2v1h-2zM2 6h13v1h-13zM1 7h15v1h-15zM0 8h16v1h-16zM0 9h16v1h-16zM1 10h14v1h-14z" /></symbol>
+    <symbol id="i-plug" viewBox="0 0 16 12" shape-rendering="crispEdges"><path fill="currentColor" d="M4 0h1v1h-1zM9 0h1v1h-1zM4 1h1v1h-1zM9 1h1v1h-1zM4 2h1v1h-1zM9 2h1v1h-1zM2 3h10v1h-10zM2 4h10v1h-10zM2 5h10v1h-10zM3 6h8v1h-8zM4 7h6v1h-6zM5 8h4v1h-4zM6 9h2v1h-2zM6 10h2v1h-2zM6 11h2v1h-2z" /></symbol>
+    <symbol id="i-db" viewBox="0 0 16 10" shape-rendering="crispEdges"><path fill="currentColor" d="M3 0h10v1h-10zM2 1h12v1h-12zM2 2h12v1h-12zM3 3h10v1h-10zM2 4h1v1h-1zM13 4h1v1h-1zM2 5h12v1h-12zM3 6h10v1h-10zM2 7h1v1h-1zM13 7h1v1h-1zM2 8h12v1h-12zM3 9h10v1h-10z" /></symbol>
+    <symbol id="i-chat" viewBox="0 0 16 11" shape-rendering="crispEdges"><path fill="currentColor" d="M1 0h12v1h-12zM0 1h14v1h-14zM0 2h2v1h-2zM12 2h2v1h-2zM0 3h2v1h-2zM4 3h6v1h-6zM12 3h2v1h-2zM0 4h2v1h-2zM12 4h2v1h-2zM0 5h2v1h-2zM4 5h4v1h-4zM12 5h2v1h-2zM0 6h14v1h-14zM1 7h12v1h-12zM3 8h3v1h-3zM3 9h2v1h-2zM3 10h1v1h-1z" /></symbol>
+    <symbol id="i-chart" viewBox="0 0 16 9" shape-rendering="crispEdges"><path fill="currentColor" d="M11 0h3v1h-3zM11 1h3v1h-3zM7 2h3v1h-3zM11 2h3v1h-3zM7 3h3v1h-3zM11 3h3v1h-3zM3 4h3v1h-3zM7 4h3v1h-3zM11 4h3v1h-3zM3 5h3v1h-3zM7 5h3v1h-3zM11 5h3v1h-3zM3 6h3v1h-3zM7 6h3v1h-3zM11 6h3v1h-3zM3 7h3v1h-3zM7 7h3v1h-3zM11 7h3v1h-3zM0 8h16v1h-16z" /></symbol>
+    <symbol id="i-star" viewBox="0 0 7 7" shape-rendering="crispEdges">
+      <path fill="currentColor" d="M3 0h1v2h3v1H6v1H5v1h1v2H5V6H2v1H1V5h1V4H1V3H0V2h3z" />
+    </symbol>
+  </svg>
+
+  <!-- Title screen (click, key or wait to dismiss) -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <p class="splash-title">JAMESON<br />BAGAIN</p>
+      <p class="splash-sub">THE FULL-STACK QUEST</p>
+      <p class="blink">PRESS START</p>
+      <p class="splash-foot">© <span class="year"></span> · 1 PLAYER</p>
+    </div>
+  </div>
+
+  <div class="crt" aria-hidden="true"></div>
+  <img class="companion" id="companion" src="assets/sprites/player.svg" alt="" aria-hidden="true" />
+
+  <!-- HUD / nav -->
+  <header class="hud">
+    <div class="hud-player">
+      <span class="hud-1up">1UP</span>
+      <span class="hearts" aria-label="3 lives"><svg><use href="#i-heart" /></svg><svg><use href="#i-heart" /></svg><svg><use href="#i-heart" /></svg></span>
+    </div>
+    <nav class="hud-nav" aria-label="Primary">
+      <a href="#home">START</a>
+      <a href="#about">PLAYER</a>
+      <a href="#experience">QUESTS</a>
+      <a href="#skills">ITEMS</a>
+      <a href="#work">TROPHIES</a>
+      <a href="#apps">APPS</a>
+      <a href="#builds">BUILDS</a>
+      <a href="#arcade">ARCADE</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <div class="hud-coins" title="Coins collected"><img src="assets/sprites/coin.svg" alt="" /> x<span id="coins">00</span></div>
+    <button class="hud-btn" id="sound-btn" type="button" aria-pressed="false" title="Sound">♪ OFF</button>
+    <button class="hud-btn" id="pause-btn" type="button" title="Pause menu (Esc)">II</button>
+    <a class="hud-cv" href="cv.pdf" target="_blank" rel="noopener">CV</a>
+  </header>
+  <!-- Mobile nav -->
+  <nav class="pad" aria-label="Primary mobile">
+    <a href="#home">START</a>
+    <a href="#about">PLAYER</a>
+    <a href="#work">TROPHIES</a>
+    <a href="#contact">CONTACT</a>
+    <button type="button" id="pause-btn-m" aria-label="Pause menu">II</button>
+  </nav>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- Pause menu -->
+  <div class="pause" id="pause" hidden>
+    <div class="pause-box px-box" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+      <p class="pause-title" id="pause-title">PAUSED</p>
+      <nav class="pause-menu">
+        <button type="button" data-resume>▶ RESUME</button>
+        <a href="#about">PLAYER PROFILE</a>
+        <a href="#experience">QUEST LOG</a>
+        <a href="#work">TROPHIES</a>
+        <a href="#apps">MY APPS</a>
+        <a href="#builds">DESIGN-TO-CODE</a>
+        <a href="game.html">▶ PLAY DEPLOY RUN</a>
+        <a href="jet.html">▶ PLAY BUG STRIKE</a>
+        <a href="hotfix.html">▶ PLAY HOTFIX</a>
+        <a href="cv.pdf" target="_blank" rel="noopener">VIEW CV</a>
+        <button type="button" id="sound-btn-p">SOUND: OFF</button>
+      </nav>
+      <p class="sub">ACHIEVEMENTS <span id="ach-count">0/0</span></p>
+      <ul class="ach-list" id="ach-list"></ul>
+      <p class="muted pause-hint">ESC TO RESUME</p>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <img class="moon" src="assets/sprites/moon.svg" alt="" aria-hidden="true" />
+      <div class="skyline" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div>
+          <p class="stage">WORLD 1-1</p>
+          <h1>JAMESON<br /><span class="gold">BAGAIN</span></h1>
+          <p class="class-line">CLASS: <b>FULL-STACK ENGINEER</b> · LV. 8</p>
+          <div class="bars">
+            <div class="bar"><span>FRONTEND</span><i style="--v:95%"></i></div>
+            <div class="bar"><span>BACKEND</span><i style="--v:90%"></i></div>
+            <div class="bar"><span>CLOUD</span><i style="--v:80%"></i></div>
+            <div class="bar"><span>MOBILE</span><i style="--v:70%"></i></div>
+          </div>
+          <p class="lead">
+            8 years shipping web products, the last 4 building ClientWindow — a multi-tenant SaaS for business
+            messaging across WhatsApp, WeChat, SMS, Email, Teams and Slack. Schema to screen, greenfield to production incidents.
+          </p>
+          <div class="cta">
+            <a class="btn btn-gold" href="#work">▶ START GAME</a>
+            <a class="btn" href="#contact">SEND MESSAGE</a>
+          </div>
+        </div>
+        <figure class="portrait px-box">
+          <img class="pixelated" src="assets/portrait-pixel.png" alt="" />
+          <img class="real" src="assets/portrait.jpg" alt="Jameson Bagain standing on a city street at night" />
+          <figcaption>P1 · hover to un-pixel</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ABILITIES -->
+    <section class="section">
+      <img class="sprite sprite-slime r" src="assets/sprites/slime.svg" alt="" aria-hidden="true" style="top:40%" />
+      <div class="wrap">
+        <p class="stage">WORLD 1-2</p>
+        <h2>ABILITIES <button class="pickup" type="button" aria-label="Collect coin"><img src="assets/sprites/coin.svg" alt="" /></button></h2>
+        <div class="grid-3">
+          <article class="px-box ability">
+            <header><span class="tag tag-green">LV MAX</span></header>
+            <h3>FULL-STACK WEB</h3>
+            <p>Prisma/PostgreSQL schemas and GraphQL resolvers through to the React SPA.</p>
+            <div class="chips"><span class="chip">React</span><span class="chip">GraphQL</span><span class="chip">Prisma</span></div>
+          </article>
+          <article class="px-box ability">
+            <header><span class="tag tag-green">LV MAX</span></header>
+            <h3>MOBILE APPS</h3>
+            <p>iOS and Android apps from one codebase, sharing the web app's API.</p>
+            <div class="chips"><span class="chip">Capacitor</span><span class="chip">iOS</span><span class="chip">Android</span></div>
+          </article>
+          <article class="px-box ability">
+            <header><span class="tag tag-green">LV MAX</span></header>
+            <h3>CLOUD &amp; INTEGRATIONS</h3>
+            <p>Serverless infrastructure and integrations with Slack, Teams, WhatsApp, Outlook and Gmail.</p>
+            <div class="chips"><span class="chip">SST/CDK</span><span class="chip">Lambda</span><span class="chip">SQS</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAME LOOP -->
+    <section class="section">
+      <img class="sprite sprite-robot l" src="assets/sprites/robot.svg" alt="" aria-hidden="true" style="top:25%" />
+      <div class="wrap">
+        <p class="stage">WORLD 1-3</p>
+        <h2>GAME LOOP</h2>
+        <ol class="steps">
+          <li class="px-box"><span class="step-n">STAGE 1</span><h3>DISCOVER</h3><p>Pin down the problem and what "done" means.</p></li>
+          <li class="px-box"><span class="step-n">STAGE 2</span><h3>BUILD</h3><p>Small, tested increments you can see early.</p></li>
+          <li class="px-box"><span class="step-n">STAGE 3</span><h3>DEPLOY</h3><p>Automated releases, no surprises on launch day.</p></li>
+          <li class="px-box"><span class="step-n">STAGE 4</span><h3>SUPPORT</h3><p>Monitoring, fixes and iteration after go-live.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PLAYER -->
+    <section id="about" class="section">
+      <img class="sprite sprite-coin r" src="assets/sprites/coin.svg" alt="" aria-hidden="true" style="top:18%;--d:0s;--x:0px" /><img class="sprite sprite-coin r" src="assets/sprites/coin.svg" alt="" aria-hidden="true" style="top:30%;--d:0.3s;--x:30px" /><img class="sprite sprite-coin r" src="assets/sprites/coin.svg" alt="" aria-hidden="true" style="top:42%;--d:0.6s;--x:-10px" />
+      <div class="wrap">
+        <p class="stage">WORLD 2-1</p>
+        <h2>PLAYER PROFILE</h2>
+        <div class="about-grid">
+          <figure class="portrait about-photo px-box">
+            <img class="pixelated" src="assets/portrait-close-pixel.png" alt="" />
+            <img class="real" src="assets/portrait-close.jpg" alt="Jameson Bagain in a cap and maroon shirt" />
+            <figcaption>JAMESON · HUMAN · PH</figcaption>
+          </figure>
+          <div>
+            <div class="dialog px-box">
+              <p>
+                I'm a full-stack engineer who works end-to-end — database, API, web, mobile and the AWS
+                infrastructure underneath. I started out building marketing pages and banking front-ends,
+                and now spend my days on a multi-tenant messaging platform businesses use to talk to their clients.
+              </p>
+              <span class="dialog-next" aria-hidden="true">▼</span>
+            </div>
+            <dl class="stats">
+              <div class="px-box"><dt>YEARS</dt><dd data-count="8">0</dd></div>
+              <div class="px-box"><dt>GUILDS</dt><dd data-count="4">0</dd></div>
+              <div class="px-box"><dt>CHANNELS</dt><dd data-count="6">0</dd></div>
+              <div class="px-box"><dt>COFFEE</dt><dd>99</dd></div>
+            </dl>
+            <p class="perks-title">PERKS</p>
+            <div class="grid-3 perks">
+              <div class="px-box"><h3><svg class="ico"><use href="#i-star" /></svg> END-TO-END</h3><p>Schema, API, UI and infra — one feature, every layer.</p></div>
+              <div class="px-box"><h3><svg class="ico"><use href="#i-star" /></svg> TENANT SHIELD</h3><p>Isolation, RBAC and encrypted secrets by default.</p></div>
+              <div class="px-box"><h3><svg class="ico"><use href="#i-star" /></svg> CALM DEBUGGER</h3><p>Structured logs first, guesses last.</p></div>
+            </div>
+            <p class="status"><span class="dot"></span> ONLINE · PHILIPPINES · REMOTE</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUEST LOG -->
+    <section id="experience" class="section">
+      <img class="sprite sprite-ghost l" src="assets/sprites/ghost.svg" alt="" aria-hidden="true" style="top:20%" /><img class="sprite sprite-ghost r" src="assets/sprites/ghost.svg" alt="" aria-hidden="true" style="top:65%" data-delay="1"/>
+      <div class="wrap">
+        <p class="stage">WORLD 2-2</p>
+        <h2>QUEST LOG <button class="pickup" type="button" aria-label="Collect coin"><img src="assets/sprites/coin.svg" alt="" /></button></h2>
+        <ol class="quests">
+          <li class="px-box quest quest-active">
+            <div class="quest-head"><span class="tag tag-gold">▶ IN PROGRESS</span><span class="muted">JUN 2022 — NOW · REMOTE</span></div>
+            <h3>SOFTWARE ENGINEER <span class="muted">@ ClientWindow</span></h3>
+            <p>One of five engineers on a 9-app monorepo — GraphQL API, React SPA, Capacitor mobile apps, email add-ins and AWS serverless on SST. Built the Slack and Gmail integrations, voice messaging with transcription, the Microsoft Teams app and subscription billing.</p>
+            <a class="trophy-link" href="https://app.clientwindow.com/" target="_blank" rel="noopener">▶ OPEN CLIENTWINDOW</a>
+          </li>
+          <li class="px-box quest">
+            <div class="quest-head"><span class="tag tag-green">✓ CLEARED</span><span class="muted">APR 2021 — JUN 2022</span></div>
+            <h3>SOFTWARE APPLICATION ENGINEER <span class="muted">@ Accenture</span></h3>
+            <p>Built a web learning platform that helps companies reskill employees, and a blockchain application for CP Group Thailand — requirements, MUI components and defect fixes.</p>
+          </li>
+          <li class="px-box quest">
+            <div class="quest-head"><span class="tag tag-green">✓ CLEARED</span><span class="muted">MAY 2019 — APR 2021</span></div>
+            <h3>FRONT END ASSOCIATE <span class="muted">@ transcosmos Asia Philippines</span></h3>
+            <p>Maintained an online banking web app in React and Redux, including validated forms for personal and bank details. Built responsive, SEO-friendly, accessible websites.</p>
+          </li>
+          <li class="px-box quest">
+            <div class="quest-head"><span class="tag tag-green">✓ CLEARED</span><span class="muted">OCT 2018 — APR 2019</span></div>
+            <h3>FRONTEND WEB DEVELOPER <span class="muted">@ StraightArrow</span></h3>
+            <p>Set up and launched Marketo marketing-automation assets — emails, landing pages, forms, programs and segments.</p>
+          </li>
+          <li class="px-box quest">
+            <div class="quest-head"><span class="tag tag-blue">TUTORIAL</span><span class="muted">2014 — 2018</span></div>
+            <h3>BS INFORMATION TECHNOLOGY <span class="muted">@ University of Rizal System</span></h3>
+            <p>Where it all started.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- INVENTORY -->
+    <section id="skills" class="section">
+      <img class="sprite sprite-chest r" src="assets/sprites/chest.svg" alt="" aria-hidden="true" style="top:45%" />
+      <div class="wrap">
+        <p class="stage">WORLD 3-1</p>
+        <h2>INVENTORY <button class="pickup" type="button" aria-label="Collect coin"><img src="assets/sprites/coin.svg" alt="" /></button></h2>
+        <p class="sub">EQUIPPED</p>
+        <div class="slots slots-equipped">
+          <span class="slot"><img src="assets/skills/typescript.svg" alt="" loading="lazy" /><span>TypeScript</span></span><span class="slot"><img src="assets/skills/react.svg" alt="" loading="lazy" /><span>React</span></span><span class="slot"><img src="assets/skills/nodedotjs.svg" alt="" loading="lazy" /><span>Node.js</span></span>
+          <span class="slot"><img src="assets/skills/graphql.svg" alt="" loading="lazy" /><span>GraphQL</span></span><span class="slot"><img src="assets/skills/postgresql.svg" alt="" loading="lazy" /><span>PostgreSQL</span></span><span class="slot"><img src="assets/skills/aws.svg" alt="" loading="lazy" /><span>AWS</span></span>
+        </div>
+        <p class="sub">BAG</p>
+        <div class="slots">
+          <span class="slot"><img src="assets/skills/express.svg" alt="" loading="lazy" /><span>Express</span></span><span class="slot"><img src="assets/skills/apollographql.svg" alt="" loading="lazy" /><span>Apollo</span></span><span class="slot"><img src="assets/skills/prisma.svg" alt="" loading="lazy" /><span>Prisma</span></span><span class="slot"><img src="assets/skills/dynamodb.svg" alt="" loading="lazy" /><span>DynamoDB</span></span>
+          <span class="slot"><img src="assets/skills/redux.svg" alt="" loading="lazy" /><span>Redux Toolkit</span></span><span class="slot"><img src="assets/skills/reactquery.svg" alt="" loading="lazy" /><span>React Query</span></span><span class="slot"><img src="assets/skills/vite.svg" alt="" loading="lazy" /><span>Vite</span></span><span class="slot"><img src="assets/skills/capacitor.svg" alt="" loading="lazy" /><span>Capacitor</span></span>
+          <span class="slot"><img src="assets/skills/sst.svg" alt="" loading="lazy" /><span>SST/CDK</span></span><span class="slot"><svg class="pix-ico" style="color:#ff9900"><use href="#i-cloud" /></svg><span>Lambda</span></span><span class="slot"><svg class="pix-ico" style="color:#ff9900"><use href="#i-cloud" /></svg><span>SQS</span></span><span class="slot"><svg class="pix-ico" style="color:#ff9900"><use href="#i-cloud" /></svg><span>Cognito</span></span>
+          <span class="slot"><svg class="pix-ico" style="color:#ff9900"><use href="#i-cloud" /></svg><span>S3</span></span><span class="slot"><svg class="pix-ico" style="color:#ff9900"><use href="#i-cloud" /></svg><span>SES</span></span><span class="slot"><svg class="pix-ico" style="color:#41a6f6"><use href="#i-plug" /></svg><span>WebSockets</span></span><span class="slot"><svg class="pix-ico" style="color:#ff9900"><use href="#i-cloud" /></svg><span>CloudWatch</span></span>
+          <span class="slot"><img src="assets/skills/slack.svg" alt="" loading="lazy" /><span>Slack API</span></span><span class="slot"><svg class="pix-ico" style="color:#7b83eb"><use href="#i-chat" /></svg><span>MS Teams</span></span><span class="slot"><img src="assets/skills/whatsapp.svg" alt="" loading="lazy" /><span>WhatsApp</span></span><span class="slot"><img src="assets/skills/mailgun.svg" alt="" loading="lazy" /><span>Mailgun</span></span>
+          <span class="slot"><svg class="pix-ico" style="color:#52bd94"><use href="#i-chart" /></svg><span>Segment</span></span><span class="slot"><svg class="pix-ico" style="color:#41a6f6"><use href="#i-db" /></svg><span>SQL</span></span><span class="slot"><img src="assets/skills/html5.svg" alt="" loading="lazy" /><span>HTML</span></span><span class="slot"><img src="assets/skills/css.svg" alt="" loading="lazy" /><span>CSS</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TROPHIES -->
+    <section id="work" class="section">
+      <img class="sprite sprite-coin l" src="assets/sprites/coin.svg" alt="" aria-hidden="true" style="top:18%;--d:0s;--x:0px" /><img class="sprite sprite-coin l" src="assets/sprites/coin.svg" alt="" aria-hidden="true" style="top:30%;--d:0.3s;--x:30px" /><img class="sprite sprite-coin l" src="assets/sprites/coin.svg" alt="" aria-hidden="true" style="top:42%;--d:0.6s;--x:-10px" />
+      <div class="wrap">
+        <p class="stage">WORLD 3-2</p>
+        <h2>TROPHIES <button class="pickup" type="button" aria-label="Collect coin"><img src="assets/sprites/coin.svg" alt="" /></button></h2>
+        <p class="sub">UNLOCKED AT CLIENTWINDOW · PRODUCTION · MULTI-TENANT</p>
+        <div class="trophies">
+          <article class="px-box trophy">
+            <svg class="trophy-ico"><use href="#i-trophy" /></svg>
+            <div>
+              <p class="tag tag-gold">ACHIEVEMENT UNLOCKED</p>
+              <h3>SLACK INTEGRATION</h3>
+              <p>Built from scratch: OAuth install, Block Kit App Home, per-participant DM notifications, a KMS-encrypted token store and a background worker.</p>
+              <div class="chips"><span class="chip">Slack API</span><span class="chip">KMS</span><span class="chip">Lambda</span></div>
+            </div>
+          </article>
+          <article class="px-box trophy">
+            <svg class="trophy-ico"><use href="#i-trophy" /></svg>
+            <div>
+              <p class="tag tag-gold">ACHIEVEMENT UNLOCKED</p>
+              <h3>OUTLOOK &amp; GMAIL ADD-INS</h3>
+              <p>Extended the Outlook add-in, then delivered the Gmail add-on — both unified on one shared GraphQL layer.</p>
+              <div class="chips"><span class="chip">Outlook</span><span class="chip">Gmail</span><span class="chip">GraphQL</span></div>
+              <a class="trophy-link" href="https://appsource.microsoft.com/en-us/product/office/wa200008280" target="_blank" rel="noopener">▶ VIEW OUTLOOK ADD-IN</a>
+              <a class="trophy-link" href="https://workspace.google.com/marketplace/app/clientwindow_for_gmail/597916747451" target="_blank" rel="noopener">▶ VIEW GMAIL ADD-ON</a>
+            </div>
+          </article>
+          <article class="px-box trophy">
+            <svg class="trophy-ico"><use href="#i-trophy" /></svg>
+            <div>
+              <p class="tag tag-gold">ACHIEVEMENT UNLOCKED</p>
+              <h3>VOICE + TRANSCRIPTION</h3>
+              <p>Voice messages on iOS, Android and Outlook, with inbound audio transcribed to text on every plan.</p>
+              <div class="chips"><span class="chip">Capacitor</span><span class="chip">AWS Transcribe</span></div>
+            </div>
+          </article>
+          <article class="px-box trophy">
+            <svg class="trophy-ico"><use href="#i-trophy" /></svg>
+            <div>
+              <p class="tag tag-gold">ACHIEVEMENT UNLOCKED</p>
+              <h3>MICROSOFT TEAMS APP</h3>
+              <p>Brought the whole app into Microsoft Teams so users can work their client conversations without leaving it.</p>
+              <div class="chips"><span class="chip">MS Teams</span><span class="chip">React</span></div>
+              <a class="trophy-link" href="https://appsource.microsoft.com/product/office/WA200008187" target="_blank" rel="noopener">▶ VIEW ON MICROSOFT APPSOURCE</a>
+            </div>
+          </article>
+          <article class="px-box trophy">
+            <svg class="trophy-ico"><use href="#i-trophy" /></svg>
+            <div>
+              <p class="tag tag-gold">ACHIEVEMENT UNLOCKED</p>
+              <h3>SUBSCRIPTIONS &amp; BILLING</h3>
+              <p>Tenants sign up for and manage plans — upgrades, multi-currency billing and renewal handling.</p>
+              <div class="chips"><span class="chip">Node.js</span><span class="chip">PostgreSQL</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARTRIDGES -->
+    <section id="apps" class="section">
+      <div class="wrap">
+        <p class="stage">WORLD 3-3</p>
+        <h2>CARTRIDGES</h2>
+        <p class="sub">MY OWN iOS APPS · LIVE ON THE APP STORE</p>
+        <div class="carts">
+          <article class="cart">
+            <div class="cart-label">
+              <img class="cart-icon" src="assets/apps/ping.jpg" alt="Ping app icon" />
+              <p class="tag tag-green">● LIVE</p>
+              <h3>PING</h3>
+              <p class="cart-genre">CHATS &amp; LOCATIONS · SOCIAL</p>
+              <p>Location sharing for a small circle you already trust — everyone on one map, with the conversation in the same place. Pause sharing any time.</p>
+            </div>
+            <a class="btn btn-gold cart-btn" href="https://apps.apple.com/us/app/ping-chats-locations/id6805830044" target="_blank" rel="noopener">▶ GET ON THE APP STORE</a>
+          </article>
+          <article class="cart">
+            <div class="cart-label">
+              <img class="cart-icon" src="assets/apps/all-asian-recipes.jpg" alt="All Asian Recipes app icon" />
+              <p class="tag tag-green">● LIVE</p>
+              <h3>ALL ASIAN RECIPES</h3>
+              <p class="cart-genre">FOOD &amp; DRINK</p>
+              <p>170 recipes across nine Asian cuisines. One payment unlocks everything — no subscription, no account, no ads, and it all works offline.</p>
+            </div>
+            <a class="btn btn-gold cart-btn" href="https://apps.apple.com/us/app/all-asian-recipes/id6806809140" target="_blank" rel="noopener">▶ GET ON THE APP STORE</a>
+          </article>
+          <article class="cart cart-locked">
+            <div class="cart-label">
+              <img class="cart-icon pixel" src="assets/sprites/mystery.svg" alt="" />
+              <p class="tag tag-blue">LOADING...</p>
+              <h3>MORPHEFIT</h3>
+              <p class="cart-genre">IN DEVELOPMENT</p>
+              <p>Still in the workshop. Coming soon to the App Store.</p>
+            </div>
+            <span class="btn cart-btn" aria-disabled="true">COMING SOON</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN-TO-CODE -->
+    <section id="builds" class="section">
+      <div class="wrap">
+        <p class="stage">WORLD 4-1</p>
+        <h2>DESIGN-TO-CODE</h2>
+        <p class="sub">FIGMA COMMUNITY DESIGNS, REBUILT BY HAND IN HTML &amp; CSS · RESPONSIVE AT EVERY SIZE</p>
+        <div class="builds">
+          <article class="build" data-build="meridian">
+            <a class="build-shot px-box" href="work/meridian/index.html">
+              <img src="assets/builds/meridian.jpg" alt="Meridian build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
+              <span class="build-queued"><span>LOADING LEVEL...</span></span>
+            </a>
+            <p class="tag tag-green build-state">✓ BUILT</p>
+            <h3>MERIDIAN</h3>
+            <p class="build-kind">SaaS landing page</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1440 · 834 · 390</span></div>
+            <p class="build-credit">Design: Alex Mërović · Figma Community</p>
+            <a class="trophy-link build-link" href="work/meridian/index.html">▶ VIEW LIVE BUILD</a>
+          </article>
+          <article class="build" data-build="rebel-rover">
+            <a class="build-shot px-box" href="work/rebel-rover/index.html">
+              <img src="assets/builds/rebel-rover.jpg" alt="Rebel Rover build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
+              <span class="build-queued"><span>LOADING LEVEL...</span></span>
+            </a>
+            <p class="tag tag-green build-state">✓ BUILT</p>
+            <h3>REBEL ROVER</h3>
+            <p class="build-kind">Travel website · 6 pages</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1512 · fluid</span></div>
+            <p class="build-credit">Design: Rebel Rover theme · Figma Community</p>
+            <a class="trophy-link build-link" href="work/rebel-rover/index.html">▶ VIEW LIVE BUILD</a>
+          </article>
+          <article class="build" data-build="oval">
+            <a class="build-shot px-box" href="work/oval/index.html">
+              <img src="assets/builds/oval.jpg" alt="Oval build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
+              <span class="build-queued"><span>LOADING LEVEL...</span></span>
+            </a>
+            <p class="tag tag-green build-state">✓ BUILT</p>
+            <h3>OVAL</h3>
+            <p class="build-kind">SaaS product site · 4 pages</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Desktop · 768 · 320</span></div>
+            <p class="build-credit">Design: Oval template vol 2 · Figma Community</p>
+            <a class="trophy-link build-link" href="work/oval/index.html">▶ VIEW LIVE BUILD</a>
+          </article>
+          <article class="build" data-build="home-interior">
+            <a class="build-shot px-box" href="work/home-interior/index.html">
+              <img src="assets/builds/home-interior.jpg" alt="Homco build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
+              <span class="build-queued"><span>LOADING LEVEL...</span></span>
+            </a>
+            <p class="tag tag-green build-state">✓ BUILT</p>
+            <h3>HOMCO</h3>
+            <p class="build-kind">Interior design wireframe · 9 pages</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1440 · fluid</span></div>
+            <p class="build-credit">Design: Home Interior wireframe · Figma Community</p>
+            <a class="trophy-link build-link" href="work/home-interior/index.html">▶ VIEW LIVE BUILD</a>
+          </article>
+          <article class="build" data-build="product-details">
+            <a class="build-shot px-box" href="work/product-details/index.html">
+              <img src="assets/builds/product-details.jpg" alt="Product Details build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
+              <span class="build-queued"><span>LOADING LEVEL...</span></span>
+            </a>
+            <p class="tag tag-green build-state">✓ BUILT</p>
+            <h3>PRODUCT DETAILS</h3>
+            <p class="build-kind">E-commerce product page</p>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1440 · 375</span></div>
+            <p class="build-credit">Design: Product Details (Responsive) · Figma Community</p>
+            <a class="trophy-link build-link" href="work/product-details/index.html">▶ VIEW LIVE BUILD</a>
+          </article>
+        </div>
+        <p class="muted builds-note">Designs belong to their original creators and are used under the Figma Community licence. The code is mine.</p>
+      </div>
+    </section>
+
+    <!-- ARCADE -->
+    <section id="arcade" class="section">
+      <div class="wrap">
+        <p class="stage">BONUS STAGE</p>
+        <h2>ARCADE</h2>
+        <div class="cabinets">
+          <article class="cabinet">
+            <a class="arcade-screen px-box" href="game.html">
+              <img src="assets/game-preview.png" alt="Deploy Run gameplay: the player character running through a pixel city" />
+              <span class="play"><span>▶ INSERT COIN</span></span>
+            </a>
+            <h3 class="gold">DEPLOY RUN</h3>
+            <p>An endless runner. Jump the bugs, dodge the crashed servers, grab coffee for a shield — and see how far the build gets before it fails.</p>
+            <div class="cta"><a class="btn btn-gold" href="game.html">▶ PLAY</a></div>
+          </article>
+          <article class="cabinet">
+            <a class="arcade-screen arcade-screen-tall px-box" href="jet.html">
+              <img src="assets/jet-preview.png" alt="Bug Strike gameplay: a pixel fighter jet facing the Memory Leak boss" />
+              <span class="play"><span>▶ INSERT COIN</span></span>
+            </a>
+            <h3 class="gold">BUG STRIKE</h3>
+            <p>A fighter-jet shooter. Fly over the night city, blast waves of bugs and malware, and patch the Memory Leak boss every fifth wave.</p>
+            <div class="cta"><a class="btn btn-gold" href="jet.html">▶ PLAY</a></div>
+          </article>
+          <article class="cabinet">
+            <a class="arcade-screen arcade-screen-tall px-box" href="hotfix.html">
+              <img src="assets/hotfix-preview.png" alt="Hotfix gameplay: a patch blast clearing legacy-code blocks in a server-room maze" />
+              <span class="play"><span>▶ INSERT COIN</span></span>
+            </a>
+            <h3 class="gold">HOTFIX</h3>
+            <p>A maze game. Drop patches that blast in a cross, clear the legacy code and squash every bug — before they copy themselves.</p>
+            <div class="cta"><a class="btn btn-gold" href="hotfix.html">▶ PLAY</a></div>
+          </article>
+        </div>
+        <div class="chips arcade-tech"><span class="chip">Canvas</span><span class="chip">Vanilla JS</span><span class="chip">No libraries</span><span class="chip">Built for this site</span></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <img class="sprite sprite-cat r" src="assets/sprites/cat.svg" alt="" aria-hidden="true" style="top:55%" />
+      <div class="wrap">
+        <p class="stage">FINAL STAGE</p>
+        <h2>SEND A MESSAGE</h2>
+        <div class="contact-grid">
+          <div>
+            <ul class="contact-list">
+              <li><span class="muted">EMAIL</span> <a href="mailto:bagainjameson@gmail.com">bagainjameson@gmail.com</a></li>
+              <li><span class="muted">LINKEDIN</span> <a href="https://www.linkedin.com/in/jameson-bagain-652129178/" target="_blank" rel="noopener">jameson-bagain</a></li>
+              <li><span class="muted">LOCATION</span> Philippines (UTC+8)</li>
+            </ul>
+            <div class="chips">
+              <span class="chip"><span class="dot"></span> replies within 24h</span>
+              <span class="chip">open to new roles</span>
+            </div>
+          </div>
+          <form class="px-box dialog form" id="contact-form">
+            <label>NAME<input name="name" required placeholder="enter your name_" /></label>
+            <label>EMAIL<input name="email" type="email" required placeholder="you@example.com" /></label>
+            <label>MESSAGE<textarea name="message" rows="5" required placeholder="what's up?"></textarea></label>
+            <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button class="btn btn-gold" type="submit">▶ SEND</button>
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="ground" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="thanks">THANKS FOR PLAYING</p>
+      <p class="blink small">CONTINUE? ▶ <a href="#home">YES</a></p>
+      <nav class="footer-links">
+        <a href="#about">PLAYER</a><a href="#experience">QUESTS</a><a href="#skills">ITEMS</a>
+        <a href="#work">TROPHIES</a><a href="#contact">CONTACT</a>
+        <a href="https://www.linkedin.com/in/jameson-bagain-652129178/" target="_blank" rel="noopener">LINKEDIN</a>
+        <a href="mailto:bagainjameson@gmail.com">EMAIL</a>
+      </nav>
+      <p class="muted">© <span class="year"></span> JAMESON BAGAIN · BUILT USING HTML, CSS &amp; JS</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
