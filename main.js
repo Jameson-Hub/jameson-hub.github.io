@@ -222,6 +222,33 @@ function countUp(el) {
   }, 90);
 }
 
+// ---------- World stats (live, from the public Umami share link) ----------
+// The share link exposes read-only stats without an API key. This isn't an
+// official API, so any failure just leaves the panel hidden.
+const STATS_API = "https://cloud.umami.is/analytics/us/api";
+const STATS_SHARE = "dygmYfVEwVvyxovB";
+const STATS_SINCE = Date.UTC(2026, 10, 1); // site launch
+const STATS_MIN_PLAYERS = 50; // stay hidden until the numbers look lived-in
+async function loadWorldStats() {
+  const panel = document.getElementById("world-stats");
+  if (!panel) return;
+  try {
+    const share = await (await fetch(`${STATS_API}/share/${STATS_SHARE}`)).json();
+    const headers = { "x-umami-share-token": share.token, "x-umami-share-context": "1" };
+    const q = `startAt=${STATS_SINCE}&endAt=${Date.now()}&timezone=UTC`;
+    const get = (path) =>
+      fetch(`${STATS_API}/websites/${share.websiteId}/${path}${path.includes("?") ? "&" : "?"}${q}`, { headers })
+        .then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+    const [stats, events] = await Promise.all([get("stats"), get("metrics?type=event")]);
+    const count = (name) => events.find((e) => e.x === name)?.y ?? 0;
+    if (stats.visitors < STATS_MIN_PLAYERS) return;
+    const values = { players: stats.visitors, views: stats.pageviews, games: count("game-over"), achievements: count("achievement") };
+    for (const [k, v] of Object.entries(values)) panel.querySelector(`[data-stat="${k}"]`).textContent = v.toLocaleString();
+    panel.hidden = false;
+  } catch {}
+}
+loadWorldStats();
+
 // ---------- Contact form ----------
 // Delivered to the inbox via FormSubmit (no backend needed).
 // If that fails, fall back to opening the visitor's mail app.

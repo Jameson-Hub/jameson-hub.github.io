@@ -389,6 +389,7 @@
         <h2>DESIGN-TO-CODE</h2>
         <p class="sub">FIGMA COMMUNITY DESIGNS, REBUILT BY HAND IN HTML &amp; CSS · RESPONSIVE AT EVERY SIZE</p>
         <div class="builds">
+          <!-- Unbuilt cards carry "queued" (hidden); drop it when work/<slug>/ ships. -->
           <article class="build" data-build="meridian">
             <a class="build-shot px-box" href="work/meridian/index.html">
               <img src="assets/builds/meridian.jpg" alt="Meridian build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
@@ -401,7 +402,7 @@
             <p class="build-credit">Design: Alex Mërović · Figma Community</p>
             <a class="trophy-link build-link" href="work/meridian/index.html" data-umami-event="build-open" data-umami-event-build="meridian">▶ VIEW LIVE BUILD</a>
           </article>
-          <article class="build" data-build="rebel-rover">
+          <article class="build queued" data-build="rebel-rover">
             <a class="build-shot px-box" href="work/rebel-rover/index.html">
               <img src="assets/builds/rebel-rover.jpg" alt="Rebel Rover build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
               <span class="build-queued"><span>LOADING LEVEL...</span></span>
@@ -413,7 +414,7 @@
             <p class="build-credit">Design: Rebel Rover theme · Figma Community</p>
             <a class="trophy-link build-link" href="work/rebel-rover/index.html" data-umami-event="build-open" data-umami-event-build="rebel-rover">▶ VIEW LIVE BUILD</a>
           </article>
-          <article class="build" data-build="oval">
+          <article class="build queued" data-build="oval">
             <a class="build-shot px-box" href="work/oval/index.html">
               <img src="assets/builds/oval.jpg" alt="Oval build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
               <span class="build-queued"><span>LOADING LEVEL...</span></span>
@@ -425,7 +426,7 @@
             <p class="build-credit">Design: Oval template vol 2 · Figma Community</p>
             <a class="trophy-link build-link" href="work/oval/index.html" data-umami-event="build-open" data-umami-event-build="oval">▶ VIEW LIVE BUILD</a>
           </article>
-          <article class="build" data-build="home-interior">
+          <article class="build queued" data-build="home-interior">
             <a class="build-shot px-box" href="work/home-interior/index.html">
               <img src="assets/builds/home-interior.jpg" alt="Homco build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
               <span class="build-queued"><span>LOADING LEVEL...</span></span>
@@ -437,7 +438,7 @@
             <p class="build-credit">Design: Home Interior wireframe · Figma Community</p>
             <a class="trophy-link build-link" href="work/home-interior/index.html" data-umami-event="build-open" data-umami-event-build="home-interior">▶ VIEW LIVE BUILD</a>
           </article>
-          <article class="build" data-build="product-details">
+          <article class="build queued" data-build="product-details">
             <a class="build-shot px-box" href="work/product-details/index.html">
               <img src="assets/builds/product-details.jpg" alt="Product Details build preview" loading="lazy" onerror="this.closest('.build').classList.add('queued')" />
               <span class="build-queued"><span>LOADING LEVEL...</span></span>
@@ -487,6 +488,15 @@
             <p>A maze game. Drop patches that blast in a cross, clear the legacy code and squash every bug — before they copy themselves.</p>
             <div class="cta"><a class="btn btn-gold" href="hotfix.html">▶ PLAY</a></div>
           </article>
+        </div>
+        <div class="world-stats" id="world-stats" hidden>
+          <p class="sub">WORLD STATS · LIVE</p>
+          <dl class="stats">
+            <div class="px-box"><dt>PLAYERS</dt><dd data-stat="players">0</dd></div>
+            <div class="px-box"><dt>PAGE VIEWS</dt><dd data-stat="views">0</dd></div>
+            <div class="px-box"><dt>GAMES PLAYED</dt><dd data-stat="games">0</dd></div>
+            <div class="px-box"><dt>ACHIEVEMENTS</dt><dd data-stat="achievements">0</dd></div>
+          </dl>
         </div>
         <div class="chips arcade-tech"><span class="chip">Canvas</span><span class="chip">Vanilla JS</span><span class="chip">No libraries</span><span class="chip">Built for this site</span></div>
       </div>

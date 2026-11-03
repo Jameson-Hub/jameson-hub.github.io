@@ -478,3 +478,6 @@ body.paused .sprite, body.paused .pickup, body.paused .companion { animation-pla
 .build.queued .build-state::before { font-size: .5rem; }
 .build.queued .build-link { display: none; }
 .build.queued { display: none; } /* unfinished builds stay hidden until their preview exists */
+.world-stats { margin-top: 2.5rem; }
+.world-stats .stats { margin-top: 0; }
+.world-stats dd { font-size: clamp(.9rem, 2.4vw, 1.4rem); overflow-wrap: anywhere; }
