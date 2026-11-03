@@ -250,11 +250,11 @@ async function loadWorldStats() {
 loadWorldStats();
 
 // ---------- Contact form ----------
-// Delivered to the inbox via FormSubmit (no backend needed).
+// Delivered to the inbox via Web3Forms (no backend needed).
 // If that fails, fall back to opening the visitor's mail app.
 const TO = "bagainjameson@gmail.com";
-// FormSubmit's alias for TO, so the endpoint doesn't expose the address
-const FORM_ID = "57d0adf4cc75377dc3ddbe851bdb16d4";
+// Web3Forms access key for TO — public by design, it only allows sending to that inbox
+const FORM_KEY = "10f5f206-e061-4375-8e41-0fc81cf15b71";
 const form = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 const sendBtn = form.querySelector("button");
@@ -266,18 +266,17 @@ form.addEventListener("submit", async (e) => {
   formStatus.textContent = "SENDING...";
   formStatus.className = "form-status";
   try {
-    const res = await fetch(`https://formsubmit.co/ajax/${FORM_ID}`, {
+    const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
+        access_key: FORM_KEY,
         name: f.get("name"),
         email: f.get("email"),
         message: f.get("message"),
-        _subject: `Portfolio message from ${f.get("name")}`,
-        _replyto: f.get("email"),
-        _template: "table",
-        _captcha: "false",
-        _honey: f.get("_honey"),
+        subject: `Portfolio message from ${f.get("name")}`,
+        from_name: "Portfolio contact form",
+        botcheck: f.get("botcheck"),
       }),
     });
     const data = await res.json();
