@@ -19,7 +19,11 @@ const PAGE_NAMES = { "/": "Home", "/game.html": "Deploy Run", "/jet.html": "Bug 
 let countryName;
 try { countryName = new Intl.DisplayNames(["en"], { type: "region" }); } catch {}
 const LABEL = {
-  path: (x) => PAGE_NAMES[x] ?? PAGE_NAMES[x.replace(/index\.html$/, "")] ?? x,
+  path: (x) => {
+    const [page, hash] = x.replace(/index\.html/, "").split("#");
+    const name = PAGE_NAMES[page] ?? page;
+    return hash ? `${name} · ${hash[0].toUpperCase()}${hash.slice(1)}` : name;
+  },
   event: (x) => EVENT_NAMES[x] ?? x,
   country: (x) => countryName?.of(x) ?? x,
   referrer: (x) => x,
@@ -40,14 +44,17 @@ async function load(days) {
   const startAt = days === "all" ? STATS_SINCE : Math.max(STATS_SINCE, Date.now() - days * DAY);
   const p = { startAt, timezone: TZ };
   try {
-    const [stats, series, ...lists] = await Promise.all([
+    const [stats, series, weekly, ...lists] = await Promise.all([
       umamiGet("stats", p),
       umamiGet("pageviews?unit=day", p),
+      umamiGet("sessions/weekly", p),
       ...Object.keys(LABEL).map((type) => umamiGet(`metrics?type=${type}`, p)),
     ]);
     renderTiles(stats);
     renderChart(series, startAt);
     Object.keys(LABEL).forEach((type, i) => renderList(type, lists[i]));
+    renderWorld(lists[Object.keys(LABEL).indexOf("country")]);
+    renderHeat(weekly);
     status.hidden = true;
     body.hidden = false;
   } catch {
@@ -121,7 +128,13 @@ function niceMax(n) {
 
 function renderList(type, rows) {
   const table = document.querySelector(`[data-list="${type}"]`);
-  const items = rows.filter((r) => r.x).slice(0, 6);
+  // Merge rows that share a label (e.g. "/" and "/index.html"), then keep the top 6.
+  const merged = new Map();
+  for (const r of rows.filter((r) => r.x)) {
+    const label = LABEL[type](r.x);
+    merged.set(label, (merged.get(label) ?? 0) + r.y);
+  }
+  const items = [...merged].map(([label, y]) => ({ label, y })).sort((a, b) => b.y - a.y).slice(0, 6);
   if (!items.length) {
     table.innerHTML = `<tr><td class="empty">${EMPTY[type] ?? "No data yet"}</td></tr>`;
     return;
@@ -133,8 +146,82 @@ function renderList(type, rows) {
     )
     .join("");
   // Labels come from visitors' URLs and referrers, so set them as text, never HTML.
-  table.querySelectorAll(".rank-label").forEach((el, i) => (el.textContent = LABEL[type](items[i].x)));
+  table.querySelectorAll(".rank-label").forEach((el, i) => (el.textContent = items[i].label));
 }
+
+// ---------- Pixel world map + busiest hours ----------
+const STEPS = ["#7a6326", "#b08c2f", "#e0b13f", "#ffcd4a"]; // fewer -> more
+const EMPTY_CELL = "#3a4580";
+const step = (v, max) => (v ? STEPS[Math.min(3, Math.ceil((v / max) * 4) - 1)] : EMPTY_CELL);
+
+// Tooltip inside `box`, centred above the point (x, y) in viewport coordinates.
+function showTip(tipEl, box, x, y, html) {
+  const b = box.getBoundingClientRect();
+  tipEl.innerHTML = html;
+  tipEl.hidden = false;
+  tipEl.style.left = `${Math.min(Math.max(x - b.left, 80), b.width - 80)}px`;
+  tipEl.style.top = `${y - b.top - 58}px`;
+}
+
+const world = document.getElementById("world");
+const worldTip = document.getElementById("world-tip");
+const CELL = 4; // canvas px per grid cell
+const cellCountry = new Map();
+for (const [code, list] of Object.entries(WORLD_GRID.cells))
+  for (const i of list.split(" ")) cellCountry.set(parseInt(i, 36), code);
+let worldCounts = new Map();
+
+function renderWorld(rows) {
+  worldCounts = new Map(rows.map((r) => [r.x, r.y]));
+  const max = Math.max(1, ...worldCounts.values());
+  world.width = WORLD_GRID.cols * CELL;
+  world.height = WORLD_GRID.rows * CELL;
+  const ctx = world.getContext("2d");
+  for (const [i, code] of cellCountry) {
+    ctx.fillStyle = step(worldCounts.get(code) ?? 0, max);
+    ctx.fillRect((i % WORLD_GRID.cols) * CELL, Math.floor(i / WORLD_GRID.cols) * CELL, CELL - 1, CELL - 1);
+  }
+  const top = rows.filter((r) => r.x)[0];
+  world.setAttribute("aria-label", top ? `World map of visitors. Most visitors: ${LABEL.country(top.x)} (${top.y}).` : "World map of visitors. No visitors yet.");
+}
+
+function worldHover(e) {
+  const r = world.getBoundingClientRect();
+  const col = Math.floor(((e.clientX - r.left) / r.width) * WORLD_GRID.cols);
+  const row = Math.floor(((e.clientY - r.top) / r.height) * WORLD_GRID.rows);
+  const code = cellCountry.get(row * WORLD_GRID.cols + col);
+  if (!code) return (worldTip.hidden = true);
+  showTip(worldTip, world.parentElement, e.clientX, e.clientY, `<b>${LABEL.country(code)}</b><br>${plural(worldCounts.get(code) ?? 0, "player")}`);
+}
+world.addEventListener("pointermove", worldHover);
+world.addEventListener("pointerdown", worldHover);
+world.addEventListener("pointerleave", () => (worldTip.hidden = true));
+
+const heat = document.getElementById("heat");
+const heatTip = document.getElementById("heat-tip");
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const hourLabel = (h) => `${h % 12 || 12}${h < 12 ? "am" : "pm"}`;
+document.getElementById("heat-tz").textContent = `· ${TZ.split("/").pop().replace(/_/g, " ")} time`;
+
+// weekly[day][hour] = sessions, day 0 = Sunday, in the viewer's timezone.
+function renderHeat(weekly) {
+  const max = Math.max(1, ...weekly.flat());
+  let html = "<b></b>" + [0, 3, 6, 9, 12, 15, 18, 21].map((h) => `<b class="hr${h % 6 ? " odd" : ""}">${hourLabel(h)}</b>`).join("");
+  weekly.forEach((hours, d) => {
+    html += `<b>${WEEKDAYS[d]}</b>` + hours.map((v, h) => `<i style="background:${step(v, max)}" data-d="${d}" data-h="${h}" data-v="${v}"></i>`).join("");
+  });
+  heat.innerHTML = html;
+  let best = { v: 0 };
+  weekly.forEach((hours, d) => hours.forEach((v, h) => v > best.v && (best = { v, d, h })));
+  heat.setAttribute("aria-label", best.v ? `Visits by weekday and hour. Busiest: ${WEEKDAYS[best.d]} ${hourLabel(best.h)} (${best.v}).` : "Visits by weekday and hour. No visits yet.");
+}
+heat.addEventListener("pointerover", (e) => {
+  const c = e.target.closest("i");
+  if (!c) return (heatTip.hidden = true);
+  const r = c.getBoundingClientRect();
+  showTip(heatTip, heat.parentElement, r.left + r.width / 2, r.top, `<b>${WEEKDAYS[c.dataset.d]} ${hourLabel(+c.dataset.h)}</b><br>${plural(+c.dataset.v, "visit")}`);
+});
+heat.addEventListener("pointerleave", () => (heatTip.hidden = true));
 
 const buttons = document.querySelectorAll(".range .btn");
 buttons.forEach((b) =>

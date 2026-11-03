@@ -525,3 +525,21 @@ body.paused .sprite, body.paused .pickup, body.paused .companion { animation-pla
   .chart { height: 200px; }
   .live-tag { font-size: .45rem; }
 }
+.map-box, .heat-box { position: relative; }
+.world { display: block; width: 100%; height: auto; image-rendering: pixelated; cursor: crosshair; touch-action: pan-y; }
+.scale { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 1rem; font-family: var(--font-px); font-size: .4rem; color: var(--muted); }
+.scale i, .heat i { display: block; background: var(--panel-2); }
+.scale i { width: 12px; height: 12px; }
+.scale i:first-child { margin-left: .4rem; }
+.scale i:last-child { margin-right: .4rem; }
+.s1 { background: #7a6326 !important; }
+.s2 { background: #b08c2f !important; }
+.s3 { background: #e0b13f !important; }
+.s4 { background: #ffcd4a !important; }
+.heat { max-width: 760px; margin-inline: auto; display: grid; grid-template-columns: 2.4rem repeat(24, minmax(0, 1fr)); gap: clamp(1px, .35vw, 4px); align-items: center; }
+.heat i { aspect-ratio: 1; cursor: crosshair; }
+.heat i:hover { outline: 2px solid var(--text); }
+.heat b { font: 1.05rem var(--font-body); color: var(--muted); font-weight: 400; white-space: nowrap; overflow: visible; }
+.heat .hr { grid-column: span 3; }
+#heat-tz { font-size: .45rem; }
+@media (max-width: 600px) { .heat .odd { visibility: hidden; } }
