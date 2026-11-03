@@ -14,8 +14,9 @@ const EVENT_NAMES = {
   "build-open": "Builds opened",
   "cv-open": "CV opens",
   "contact-sent": "Messages sent",
+  "mini-open": "Mini apps opened",
 };
-const PAGE_NAMES = { "/": "Home", "/game.html": "Deploy Run", "/jet.html": "Bug Strike", "/hotfix.html": "Hotfix", "/stats.html": "World Stats", "/work/meridian/": "Meridian build" };
+const PAGE_NAMES = { "/": "Home", "/game.html": "Deploy Run", "/jet.html": "Bug Strike", "/hotfix.html": "Hotfix", "/stats.html": "World Stats", "/work/meridian/": "Meridian build", "/mini/weather/": "Weather app", "/mini/bugs/": "Bug Tracker app", "/mini/expenses/": "Expense Tracker app" };
 let countryName;
 try { countryName = new Intl.DisplayNames(["en"], { type: "region" }); } catch {}
 const LABEL = {

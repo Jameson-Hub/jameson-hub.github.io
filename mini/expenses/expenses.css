@@ -1,0 +1,58 @@
+.month-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+.month { margin: 0; font-size: 22px; font-weight: 700; min-width: 9ch; text-align: center; }
+.month-bar .spacer { flex: 1; }
+.currency { width: auto; }
+
+.summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.summary div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; box-shadow: var(--shadow); min-width: 0; }
+.summary dt { font-size: 13px; color: var(--muted); }
+.summary dd { margin: 2px 0 0; font-size: 22px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.summary small { display: block; font-size: 12px; font-weight: 500; color: var(--muted); }
+
+.charts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; margin-bottom: 16px; }
+.cats { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.cats li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: 14px; }
+.cats .amt { font-weight: 600; font-variant-numeric: tabular-nums; }
+.cats .share { color: var(--muted); font-weight: 400; margin-left: 6px; }
+.cats .bar { grid-column: 1 / -1; height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.cats .bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+
+.daily-card { position: relative; }
+.daily { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 2px; align-items: end; height: 170px; border-bottom: 1px solid var(--border); padding-top: 8px; }
+.daily button { height: 100%; display: flex; align-items: flex-end; padding: 0; border: 0; background: none; cursor: pointer; min-width: 0; }
+.daily i { display: block; width: 100%; border-radius: 3px 3px 0 0; background: var(--accent); min-height: 0; }
+.daily button:hover i, .daily button:focus-visible i { background: color-mix(in srgb, var(--accent) 70%, var(--text)); }
+.daily .zero i { height: 2px !important; background: var(--border); border-radius: 0; }
+.axis-x { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; margin-top: 6px; }
+.tip { position: absolute; translate: -50% 0; background: var(--text); color: var(--bg); font-size: 13px; padding: 6px 10px; border-radius: 8px; pointer-events: none; white-space: nowrap; z-index: 2; }
+
+.list-card { padding: 16px 0 4px; }
+.list-card .toolbar { padding: 0 16px; }
+.table-wrap { overflow-x: auto; position: relative; }
+.table { width: 100%; border-collapse: collapse; min-width: 520px; }
+.table th { text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; padding: 10px 16px; border-bottom: 1px solid var(--border); }
+.table td { padding: 10px 16px; border-top: 1px solid var(--border); }
+.table tbody tr:first-child td { border-top: 0; }
+.table .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.table .date { color: var(--muted); white-space: nowrap; font-size: 14px; }
+.table .desc { overflow-wrap: anywhere; }
+.table td:last-child { text-align: right; white-space: nowrap; }
+.table .empty { text-align: center; }
+
+.reset { color: var(--muted); font-size: 13px; text-align: center; margin-top: 24px; }
+.linkish { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 800px) {
+  .charts { grid-template-columns: minmax(0, 1fr); }
+  .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 420px) {
+  #add span { display: none; }
+  .month { font-size: 18px; }
+}
+select.currency { width: auto; }
+.month { white-space: nowrap; }
+@media (max-width: 480px) {
+  .summary dd { font-size: 18px; }
+  .month-bar { gap: 2px; }
+}

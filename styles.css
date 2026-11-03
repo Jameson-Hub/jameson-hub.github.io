@@ -543,3 +543,4 @@ body.paused .sprite, body.paused .pickup, body.paused .companion { animation-pla
 .heat .hr { grid-column: span 3; }
 #heat-tz { font-size: .45rem; }
 @media (max-width: 600px) { .heat .odd { visibility: hidden; } }
+#mini .build h3 { margin-top: 1.4rem; } /* no status tag above the title, unlike build cards */

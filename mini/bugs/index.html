@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bug Tracker — Jameson Bagain</title>
+  <meta name="description" content="A small bug tracker: create, edit and delete issues, filter and search them, and move them across a board." />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/icon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../mini.css" />
+  <link rel="stylesheet" href="bugs.css" />
+  <!-- Umami analytics (cookieless) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="95001d0a-5658-4602-acd8-d618714c005c" data-domains="jameson-hub.github.io"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="back" href="../../index.html#mini">← Portfolio</a>
+      <h1 class="app-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="7" y="6" width="10" height="14" rx="5"/><path d="M12 10v10M7 13H3M21 13h-4M7 17l-3 2M17 17l3 2M7 9 4 7M17 9l3-2M9 6l-1-3M15 6l1-3"/></svg>Bug Tracker</h1>
+      <span class="spacer"></span>
+      <button class="btn btn-primary" id="new-bug" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>New bug</span></button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <dl class="summary" id="summary"></dl>
+
+    <div class="toolbar">
+      <input class="input" id="search" type="search" placeholder="Search bugs…" aria-label="Search bugs" />
+      <select class="input" id="filter-priority" aria-label="Filter by priority">
+        <option value="">All priorities</option>
+        <option value="critical">Critical</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <select class="input" id="sort" aria-label="Sort">
+        <option value="updated">Recently updated</option>
+        <option value="priority">Priority</option>
+        <option value="created">Newest</option>
+      </select>
+      <div class="seg" role="group" aria-label="View">
+        <button type="button" data-view="board" aria-pressed="true">Board</button>
+        <button type="button" data-view="list" aria-pressed="false">List</button>
+      </div>
+    </div>
+
+    <div class="board" id="board"></div>
+    <div class="card list-card" id="list" hidden>
+      <table class="table">
+        <thead><tr><th scope="col">Bug</th><th scope="col">Priority</th><th scope="col">Status</th><th scope="col">Updated</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <p class="reset">Data stays in your browser. <button class="linkish" id="reset-text" type="button">Reset demo data</button></p>
+  </main>
+
+  <dialog id="dialog" aria-labelledby="dialog-title">
+    <form method="dialog" id="form">
+      <h2 id="dialog-title">New bug</h2>
+      <label class="field"><span>Title</span><input class="input" name="title" required maxlength="120" placeholder="e.g. Login button does nothing on Safari" /></label>
+      <label class="field"><span>Description</span><textarea class="input" name="description" maxlength="2000" placeholder="Steps to reproduce, expected vs actual…"></textarea></label>
+      <div class="form-row">
+        <label class="field"><span>Priority</span>
+          <select class="input" name="priority"><option value="critical">Critical</option><option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option></select>
+        </label>
+        <label class="field"><span>Status</span>
+          <select class="input" name="status"><option value="open">Open</option><option value="progress">In progress</option><option value="resolved">Resolved</option></select>
+        </label>
+        <label class="field"><span>Area</span><input class="input" name="area" maxlength="40" placeholder="e.g. Auth" /></label>
+      </div>
+      <div class="dialog-actions">
+        <button class="btn btn-danger left" id="delete" type="button">Delete</button>
+        <button class="btn" value="cancel" formnovalidate>Cancel</button>
+        <button class="btn btn-primary" value="save" id="save">Create bug</button>
+      </div>
+    </form>
+  </dialog>
+
+  <p class="foot">Built by Jameson Bagain · HTML, CSS &amp; JS</p>
+  <script src="bugs.js"></script>
+</body>
+</html>
