@@ -389,6 +389,7 @@ function gameOver() {
   state = "over";
   overAt = performance.now();
   sfx.over();
+  track("game-over", { game: "bug-strike", score: score });
   if (score > best) { best = score; store.set("jb-jet-best", best); }
   renderBest();
 }

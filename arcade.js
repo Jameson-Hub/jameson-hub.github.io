@@ -6,12 +6,16 @@ const store = {
   get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
 };
+// Analytics event (no-op when Umami is blocked or not loaded yet).
+function track(name, data) { try { window.umami?.track(name, data); } catch {} }
+
 // Returns true the first time an achievement is earned.
 function unlock(id) {
   const got = new Set(store.get("jb-ach", []));
   if (got.has(id)) return false;
   got.add(id);
   store.set("jb-ach", [...got]);
+  track("achievement", { id });
   return true;
 }
 

@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- Umami analytics (cookieless) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="95001d0a-5658-4602-acd8-d618714c005c" data-domains="jameson-hub.github.io"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">skip to content</a>
@@ -67,7 +69,7 @@
     <div class="hud-coins" title="Coins collected"><img src="assets/sprites/coin.svg" alt="" /> x<span id="coins">00</span></div>
     <button class="hud-btn" id="sound-btn" type="button" aria-pressed="false" title="Sound">♪ OFF</button>
     <button class="hud-btn" id="pause-btn" type="button" title="Pause menu (Esc)">II</button>
-    <a class="hud-cv" href="cv.pdf" target="_blank" rel="noopener">CV</a>
+    <a class="hud-cv" href="cv.pdf" target="_blank" rel="noopener" data-umami-event="cv-open">CV</a>
   </header>
   <!-- Mobile nav -->
   <nav class="pad" aria-label="Primary mobile">
@@ -94,7 +96,7 @@
         <a href="game.html">▶ PLAY DEPLOY RUN</a>
         <a href="jet.html">▶ PLAY BUG STRIKE</a>
         <a href="hotfix.html">▶ PLAY HOTFIX</a>
-        <a href="cv.pdf" target="_blank" rel="noopener">VIEW CV</a>
+        <a href="cv.pdf" target="_blank" rel="noopener" data-umami-event="cv-open">VIEW CV</a>
         <button type="button" id="sound-btn-p">SOUND: OFF</button>
       </nav>
       <p class="sub">ACHIEVEMENTS <span id="ach-count">0/0</span></p>
@@ -230,7 +232,7 @@
             <div class="quest-head"><span class="tag tag-gold">▶ IN PROGRESS</span><span class="muted">JUN 2022 — NOW · REMOTE</span></div>
             <h3>SOFTWARE ENGINEER <span class="muted">@ ClientWindow</span></h3>
             <p>One of five engineers on a 9-app monorepo — GraphQL API, React SPA, Capacitor mobile apps, email add-ins and AWS serverless on SST. Built the Slack and Gmail integrations, voice messaging with transcription, the Microsoft Teams app and subscription billing.</p>
-            <a class="trophy-link" href="https://app.clientwindow.com/" target="_blank" rel="noopener">▶ OPEN CLIENTWINDOW</a>
+            <a class="trophy-link" href="https://app.clientwindow.com/" target="_blank" rel="noopener" data-umami-event="trophy-link" data-umami-event-target="clientwindow">▶ OPEN CLIENTWINDOW</a>
           </li>
           <li class="px-box quest">
             <div class="quest-head"><span class="tag tag-green">✓ CLEARED</span><span class="muted">APR 2021 — JUN 2022</span></div>
@@ -303,8 +305,8 @@
               <h3>OUTLOOK &amp; GMAIL ADD-INS</h3>
               <p>Extended the Outlook add-in, then delivered the Gmail add-on — both unified on one shared GraphQL layer.</p>
               <div class="chips"><span class="chip">Outlook</span><span class="chip">Gmail</span><span class="chip">GraphQL</span></div>
-              <a class="trophy-link" href="https://appsource.microsoft.com/en-us/product/office/wa200008280" target="_blank" rel="noopener">▶ VIEW OUTLOOK ADD-IN</a>
-              <a class="trophy-link" href="https://workspace.google.com/marketplace/app/clientwindow_for_gmail/597916747451" target="_blank" rel="noopener">▶ VIEW GMAIL ADD-ON</a>
+              <a class="trophy-link" href="https://appsource.microsoft.com/en-us/product/office/wa200008280" target="_blank" rel="noopener" data-umami-event="trophy-link" data-umami-event-target="outlook">▶ VIEW OUTLOOK ADD-IN</a>
+              <a class="trophy-link" href="https://workspace.google.com/marketplace/app/clientwindow_for_gmail/597916747451" target="_blank" rel="noopener" data-umami-event="trophy-link" data-umami-event-target="gmail">▶ VIEW GMAIL ADD-ON</a>
             </div>
           </article>
           <article class="px-box trophy">
@@ -323,7 +325,7 @@
               <h3>MICROSOFT TEAMS APP</h3>
               <p>Brought the whole app into Microsoft Teams so users can work their client conversations without leaving it.</p>
               <div class="chips"><span class="chip">MS Teams</span><span class="chip">React</span></div>
-              <a class="trophy-link" href="https://appsource.microsoft.com/product/office/WA200008187" target="_blank" rel="noopener">▶ VIEW ON MICROSOFT APPSOURCE</a>
+              <a class="trophy-link" href="https://appsource.microsoft.com/product/office/WA200008187" target="_blank" rel="noopener" data-umami-event="trophy-link" data-umami-event-target="teams">▶ VIEW ON MICROSOFT APPSOURCE</a>
             </div>
           </article>
           <article class="px-box trophy">
@@ -354,7 +356,7 @@
               <p class="cart-genre">CHATS &amp; LOCATIONS · SOCIAL</p>
               <p>Location sharing for a small circle you already trust — everyone on one map, with the conversation in the same place. Pause sharing any time.</p>
             </div>
-            <a class="btn btn-gold cart-btn" href="https://apps.apple.com/us/app/ping-chats-locations/id6805830044" target="_blank" rel="noopener">▶ GET ON THE APP STORE</a>
+            <a class="btn btn-gold cart-btn" href="https://apps.apple.com/us/app/ping-chats-locations/id6805830044" target="_blank" rel="noopener" data-umami-event="app-store" data-umami-event-app="ping">▶ GET ON THE APP STORE</a>
           </article>
           <article class="cart">
             <div class="cart-label">
@@ -364,7 +366,7 @@
               <p class="cart-genre">FOOD &amp; DRINK</p>
               <p>170 recipes across nine Asian cuisines. One payment unlocks everything — no subscription, no account, no ads, and it all works offline.</p>
             </div>
-            <a class="btn btn-gold cart-btn" href="https://apps.apple.com/us/app/all-asian-recipes/id6806809140" target="_blank" rel="noopener">▶ GET ON THE APP STORE</a>
+            <a class="btn btn-gold cart-btn" href="https://apps.apple.com/us/app/all-asian-recipes/id6806809140" target="_blank" rel="noopener" data-umami-event="app-store" data-umami-event-app="all-asian-recipes">▶ GET ON THE APP STORE</a>
           </article>
           <article class="cart cart-locked">
             <div class="cart-label">
@@ -397,7 +399,7 @@
             <p class="build-kind">SaaS landing page</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1440 · 834 · 390</span></div>
             <p class="build-credit">Design: Alex Mërović · Figma Community</p>
-            <a class="trophy-link build-link" href="work/meridian/index.html">▶ VIEW LIVE BUILD</a>
+            <a class="trophy-link build-link" href="work/meridian/index.html" data-umami-event="build-open" data-umami-event-build="meridian">▶ VIEW LIVE BUILD</a>
           </article>
           <article class="build" data-build="rebel-rover">
             <a class="build-shot px-box" href="work/rebel-rover/index.html">
@@ -409,7 +411,7 @@
             <p class="build-kind">Travel website · 6 pages</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1512 · fluid</span></div>
             <p class="build-credit">Design: Rebel Rover theme · Figma Community</p>
-            <a class="trophy-link build-link" href="work/rebel-rover/index.html">▶ VIEW LIVE BUILD</a>
+            <a class="trophy-link build-link" href="work/rebel-rover/index.html" data-umami-event="build-open" data-umami-event-build="rebel-rover">▶ VIEW LIVE BUILD</a>
           </article>
           <article class="build" data-build="oval">
             <a class="build-shot px-box" href="work/oval/index.html">
@@ -421,7 +423,7 @@
             <p class="build-kind">SaaS product site · 4 pages</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Desktop · 768 · 320</span></div>
             <p class="build-credit">Design: Oval template vol 2 · Figma Community</p>
-            <a class="trophy-link build-link" href="work/oval/index.html">▶ VIEW LIVE BUILD</a>
+            <a class="trophy-link build-link" href="work/oval/index.html" data-umami-event="build-open" data-umami-event-build="oval">▶ VIEW LIVE BUILD</a>
           </article>
           <article class="build" data-build="home-interior">
             <a class="build-shot px-box" href="work/home-interior/index.html">
@@ -433,7 +435,7 @@
             <p class="build-kind">Interior design wireframe · 9 pages</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1440 · fluid</span></div>
             <p class="build-credit">Design: Home Interior wireframe · Figma Community</p>
-            <a class="trophy-link build-link" href="work/home-interior/index.html">▶ VIEW LIVE BUILD</a>
+            <a class="trophy-link build-link" href="work/home-interior/index.html" data-umami-event="build-open" data-umami-event-build="home-interior">▶ VIEW LIVE BUILD</a>
           </article>
           <article class="build" data-build="product-details">
             <a class="build-shot px-box" href="work/product-details/index.html">
@@ -445,7 +447,7 @@
             <p class="build-kind">E-commerce product page</p>
             <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">1440 · 375</span></div>
             <p class="build-credit">Design: Product Details (Responsive) · Figma Community</p>
-            <a class="trophy-link build-link" href="work/product-details/index.html">▶ VIEW LIVE BUILD</a>
+            <a class="trophy-link build-link" href="work/product-details/index.html" data-umami-event="build-open" data-umami-event-build="product-details">▶ VIEW LIVE BUILD</a>
           </article>
         </div>
         <p class="muted builds-note">Designs belong to their original creators and are used under the Figma Community licence. The code is mine.</p>

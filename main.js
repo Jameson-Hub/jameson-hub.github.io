@@ -91,6 +91,7 @@ function unlock(id) {
   if (unlocked.has(id)) return;
   unlocked.add(id);
   store.set("jb-ach", [...unlocked]);
+  try { window.umami?.track("achievement", { id }); } catch {}
   renderAchievements();
   const [title, desc] = ACHIEVEMENTS[id];
   const t = document.createElement("div");
@@ -258,6 +259,7 @@ form.addEventListener("submit", async (e) => {
     formStatus.textContent = "★ MESSAGE SENT! +1000 PTS";
     formStatus.className = "form-status ok";
     unlock("pen");
+    try { window.umami?.track("contact-sent"); } catch {}
   } catch {
     formStatus.textContent = "SEND FAILED — opening your mail app instead...";
     formStatus.className = "form-status err";

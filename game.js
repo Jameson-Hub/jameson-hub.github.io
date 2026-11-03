@@ -249,6 +249,7 @@ function gameOver() {
   state = "over";
   overAt = performance.now();
   sfx.over();
+  track("game-over", { game: "deploy-run", score: score() });
   burst(player.x + 8, player.y + 10, "#ef4f63", 16);
   if (score() > best) { best = score(); store.set("jb-run-best", best); }
   renderBest();

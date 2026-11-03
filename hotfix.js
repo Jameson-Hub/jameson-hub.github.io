@@ -403,6 +403,7 @@ function gameOver() {
   state = "over";
   overAt = performance.now();
   sfx.over();
+  track("game-over", { game: "hotfix", score: score });
   if (score > best) { best = score; store.set("jb-hotfix-best", best); }
   renderBest();
 }
