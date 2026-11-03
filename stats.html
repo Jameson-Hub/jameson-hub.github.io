@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World Stats — Jameson Bagain</title>
+  <meta name="description" content="Live visitor stats for Jameson Bagain's pixel portfolio: players, page views, games played and where visitors come from." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="assets/icon-circle-180.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Umami analytics (cookieless) -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="95001d0a-5658-4602-acd8-d618714c005c" data-domains="jameson-hub.github.io"></script>
+</head>
+<body class="game-page">
+  <div class="crt" aria-hidden="true"></div>
+
+  <header class="game-bar wrap">
+    <a class="btn" href="index.html#arcade">◀ BACK</a>
+    <h1 class="game-title">WORLD STATS</h1>
+    <span class="live-tag"><span class="dot"></span> LIVE</span>
+  </header>
+
+  <main class="wrap stats-page">
+    <div class="range" role="group" aria-label="Time range">
+      <button class="btn" type="button" data-days="7" aria-pressed="true">7 DAYS</button>
+      <button class="btn" type="button" data-days="30" aria-pressed="false">30 DAYS</button>
+      <button class="btn" type="button" data-days="all" aria-pressed="false">ALL TIME</button>
+    </div>
+
+    <p class="form-status" id="stats-status" role="status">LOADING STATS...</p>
+
+    <div id="stats-body" hidden>
+      <dl class="tiles">
+        <div class="px-box"><dt>PLAYERS</dt><dd data-tile="visitors">0</dd></div>
+        <div class="px-box"><dt>VISITS</dt><dd data-tile="visits">0</dd></div>
+        <div class="px-box"><dt>PAGE VIEWS</dt><dd data-tile="pageviews">0</dd></div>
+        <div class="px-box"><dt>BOUNCE RATE</dt><dd data-tile="bounce">0%</dd></div>
+        <div class="px-box"><dt>AVG VISIT</dt><dd data-tile="duration">0s</dd></div>
+      </dl>
+
+      <section class="px-box chart-box">
+        <h2 class="panel-title">PAGE VIEWS PER DAY</h2>
+        <div class="chart" id="chart"></div>
+        <div class="chart-tip" id="chart-tip" hidden></div>
+      </section>
+
+      <div class="lists">
+        <section class="px-box"><h2 class="panel-title">TOP PAGES</h2><table class="rank" data-list="path"></table></section>
+        <section class="px-box"><h2 class="panel-title">ACTIVITY</h2><table class="rank" data-list="event"></table></section>
+        <section class="px-box"><h2 class="panel-title">COUNTRIES</h2><table class="rank" data-list="country"></table></section>
+        <section class="px-box"><h2 class="panel-title">SOURCES</h2><table class="rank" data-list="referrer"></table></section>
+        <section class="px-box"><h2 class="panel-title">DEVICES</h2><table class="rank" data-list="device"></table></section>
+        <section class="px-box"><h2 class="panel-title">BROWSERS</h2><table class="rank" data-list="browser"></table></section>
+      </div>
+
+      <p class="muted stats-note">Cookieless analytics · no personal data stored · updates every visit</p>
+    </div>
+  </main>
+
+  <script src="umami-share.js"></script>
+  <script src="stats.js"></script>
+</body>
+</html>
