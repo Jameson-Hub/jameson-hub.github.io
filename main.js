@@ -228,7 +228,7 @@ function countUp(el) {
 const STATS_API = "https://cloud.umami.is/analytics/us/api";
 const STATS_SHARE = "dygmYfVEwVvyxovB";
 const STATS_SINCE = Date.UTC(2026, 10, 1); // site launch
-const STATS_MIN_PLAYERS = 50; // stay hidden until the numbers look lived-in
+const STATS_MIN_PLAYERS = 0; // raise to hide the panel while numbers are small
 async function loadWorldStats() {
   const panel = document.getElementById("world-stats");
   if (!panel) return;
