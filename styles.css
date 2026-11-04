@@ -546,7 +546,7 @@ body.paused .sprite, body.paused .pickup, body.paused .companion { animation-pla
 #mini .build h3 { margin-top: 1.4rem; } /* no status tag above the title, unlike build cards */
 
 /* Time travel: each section's backdrop steps further back in history, ending with dinosaurs */
-.era { position: absolute; left: 0; right: 0; bottom: 0; height: 192px; background: var(--scene) repeat-x left bottom / 960px 192px; image-rendering: pixelated; opacity: .7; pointer-events: none; z-index: 0; }
+.era { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: var(--scene) repeat-x left bottom / 750px 150px; image-rendering: pixelated; opacity: .7; pointer-events: none; z-index: 0; }
 .era::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, var(--night-2), transparent 60%); }
 .era::before { content: attr(data-era); position: absolute; right: 16px; bottom: 10px; z-index: 1; font: 10px var(--font-px); color: var(--muted); }
 .section > .wrap { position: relative; z-index: 1; }
@@ -561,5 +561,6 @@ body.paused .sprite, body.paused .pickup, body.paused .companion { animation-pla
 .era-caves { --scene: url("assets/sprites/era-caves.svg"); }
 .era-jungle { --scene: url("assets/sprites/era-jungle.svg"); }
 .era-dinos { --scene: url("assets/sprites/era-dinos.svg"); }
-.section:has(> .era) { padding-bottom: 150px; }
-@media (max-width: 860px) { .era { height: 128px; background-size: 640px 128px; } .section:has(> .era) { padding-bottom: 100px; } }
+/* Bottom padding >= scene height, so the scene never sits behind text */
+.section:has(> .era) { padding-bottom: 160px; }
+@media (max-width: 860px) { .era { height: 100px; background-size: 500px 100px; } .section:has(> .era) { padding-bottom: 110px; } }
