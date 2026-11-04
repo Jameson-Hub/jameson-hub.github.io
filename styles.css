@@ -564,3 +564,4 @@ body.paused .sprite, body.paused .pickup, body.paused .companion { animation-pla
 /* Bottom padding >= scene height, so the scene never sits behind text */
 .section:has(> .era) { padding-bottom: 160px; }
 @media (max-width: 860px) { .era { height: 100px; background-size: 500px 100px; } .section:has(> .era) { padding-bottom: 110px; } }
+.splash-seen .splash { display: none; }

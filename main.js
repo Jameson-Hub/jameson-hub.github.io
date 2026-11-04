@@ -6,9 +6,13 @@ const hideSplash = () => {
   setTimeout(() => splash.remove(), 300);
   document.querySelectorAll(".hero .bar i").forEach((b) => b.classList.add("go"));
 };
-splash.addEventListener("click", hideSplash);
-addEventListener("keydown", hideSplash, { once: true });
-setTimeout(hideSplash, 2200);
+if (document.documentElement.classList.contains("splash-seen")) hideSplash();
+else {
+  try { sessionStorage.setItem("splash-seen", "1"); } catch {}
+  splash.addEventListener("click", hideSplash);
+  addEventListener("keydown", hideSplash, { once: true });
+  setTimeout(hideSplash, 2200);
+}
 
 document.querySelectorAll(".year").forEach((el) => (el.textContent = new Date().getFullYear()));
 
